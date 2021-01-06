@@ -1,0 +1,22 @@
+{
+  "name": "js_map_tiler",
+  "version": "1.0.0",
+  "description": "Module generating tiles from an image that can be used in tiled web maps",
+  "main": "src/index.js",
+  "keywords": [
+    "tile",
+    "tiled web map",
+    "tile image",
+    "mapping"
+  ],
+  "scripts": {},
+  "directories": {
+    "lib": "src"
+  },
+  "author": "Baptiste Miquel",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1"
+  },
+  "devDependencies": {}
+}
