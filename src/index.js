@@ -15,6 +15,7 @@ function tileImage(_sourcePath, _destinationPath = destinationPath, _maxZoomInde
         maxZoomIndex = _maxZoomIndex;
         tileSize = _tileSize;
         const cutPartPromises = [];
+        const generatedFilesPath = [];
 
         loadImage(sourcePath).then((image) => {
             let zoomSize = 1;
@@ -25,7 +26,7 @@ function tileImage(_sourcePath, _destinationPath = destinationPath, _maxZoomInde
                 let cutSize = image.height / zoomSize;
                 for (let i = 0; i < image.height; i += cutSize) {
                     for (let j = 0; j < image.width; j += cutSize) {
-                        cutPartPromises.push(cutPart(image, cutSize, { x: i, y: j, z: zoomIndex }, reject));
+                        cutPartPromises.push(cutPart(image, cutSize, { x: i, y: j, z: zoomIndex }, generatedFilesPath, reject));
                     }
                 }
                 zoomIndex++;
@@ -33,12 +34,12 @@ function tileImage(_sourcePath, _destinationPath = destinationPath, _maxZoomInde
             }
         });
 
-        Promise.all(cutPartPromises).then(resolve);
+        Promise.all(cutPartPromises).then(() => resolve(generatedFilesPath));
     });
 }
 
 // Write a tile image
-function cutPart(image, size, offset, reject) {
+function cutPart(image, size, offset, generatedFilesPath, reject) {
     return new Promise((resolvePart, rejectPart) => {
         // Init canvas
         const canv = createCanvas(tileSize, tileSize);
@@ -61,6 +62,7 @@ function cutPart(image, size, offset, reject) {
         const y = Math.floor(offset.y / size);
 
         const outString = destinationPath.replace('{{z}}', z).replace('{{x}}', x).replace('{{y}}', y);
+        generatedFilesPath.push(outString);
 
         mkdirRecursive(outString);
         fs.writeFile(outString, buf, (err) => {
