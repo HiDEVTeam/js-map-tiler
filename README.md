@@ -110,8 +110,8 @@ Will create:
 The `tileImage` function runs asynchronously with promises, you can access its callbacks with `then` and `catch`:
 
 ```js
-tileImage('map.jpg', '{{z}}-{{x}}_{{y}}.png').then(() => {
-    console.log("Successfully exported!");
+tileImage('map.jpg', '{{z}}-{{x}}_{{y}}.png').then((files) => {
+    console.log(`Successfully exported ${files.length} files!`);
 }).catch(err => {
     console.log("Error", err);
 });
