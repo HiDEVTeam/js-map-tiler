@@ -1,5 +1,5 @@
 {
-  "name": "js_map_tiler",
+  "name": "@hidev/js-map-tiler",
   "version": "1.0.0",
   "description": "Module generating tiles from an image that can be used in tiled web maps",
   "main": "src/index.js",
@@ -18,5 +18,13 @@
   "dependencies": {
     "canvas": "^2.6.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiDEVTeam/js-map-tiler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HiDEVTeam/js-map-tiler/issues"
+  },
+  "homepage": "https://github.com/HiDEVTeam/js-map-tiler#readme"
 }
